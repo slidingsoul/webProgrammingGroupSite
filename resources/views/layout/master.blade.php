@@ -10,42 +10,52 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <div class="container-fluid">
-    <span class="rounded-pill" style="width:40px">
-      <img src="{{asset('images/crusader.svg')}}" alt="Logo" style="width:30px;" class="rounded-pill">
-    </span>
-    
-    <a class="navbar-brand" href="{{url('/home')}}">Crusader</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('profile/daniel')}}">Daniel</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('profile/nathan')}}">Nathan</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('profile/naufal')}}">Naufal</a>
-        </li>  
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('profile/odit')}}">Odit</a>
-        </li>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{url('profile/ricky')}}">Ricky</a>
-        </li>  
-      </ul>
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <span class="rounded-pill" style="width:40px">
+        <img src="{{asset('images/crusader.svg')}}" alt="Logo" style="width:30px;" class="rounded-pill">
+      </span>
+      
+      <a class="navbar-brand" href="{{url('/home')}}">Crusader</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          @if(Auth::check())
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('profile/daniel')}}">Daniel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('profile/nathan')}}">Nathan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('profile/naufal')}}">Naufal</a>
+          </li>  
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('profile/odit')}}">Odit</a>
+          </li>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url('profile/ricky')}}">Ricky</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" style="color: red;" href="{{url('logout')}}">Logout</a>
+          </li>
+          <span>{{Auth::user()->name}}</span>
+          @else
+          <li class="nav-item">
+            <a href="{{url('login')}}">Login dulu bos!</a>
+          </li>
+          @endif
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
 @yield('container')
-
 
 </body>
 </html>

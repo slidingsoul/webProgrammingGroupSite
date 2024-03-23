@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,22 @@ Route::get('/', function () {
 Route::get('profile/{username}',[MainController::class, 'ProfilePage']);
 
 Route::get('/home', [MainController::class, 'HomePage']);
+
+Route::get('/registration', [LoginController::class, 'registration']);
+
+Route::group(['middleware'=>'auth', 'prefix' => 'settings'], function(){
+    Route::get('/profile', function(){
+        echo "Opened profile setting";
+    });
+
+    Route::get('/integration', function(){
+        echo "Opened integration setting";
+    });
+});
+
+Route::get('/login', function(){
+    return view('login');
+})->name('login');
+
+Route::post('/authenticate', [LoginController::class, 'authenticate']);
+Route::get('/logout', [LoginController::class, 'logout']);

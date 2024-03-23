@@ -2,6 +2,7 @@
 @section('container')
 
 <div class="container-fluid mt-3">
+
   <div class="card text-center mb-3" style="width: 25rem;">
     <div class="card-header">
       <h3>Member of Team Crusader</h3>
@@ -20,7 +21,7 @@
   </div>
 
   <!-- start cards -->
-
+  @if(Auth::check())
   <div class="row">
     <div class="col">
       <div class="card" style="width: 18rem;">
@@ -72,6 +73,8 @@
       </div>
     </div>
   </div>
+
+  @endif
 </div>
 
 @stop
